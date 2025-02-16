@@ -16,7 +16,6 @@ public class UserController {
 
     private final UserService userService;
 
-    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -28,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTORes> getUserById(@PathVariable String id) {
+    public ResponseEntity<UserDTORes> getUserById(@PathVariable Long id) {
         UserDTORes user = userService.getUserById(id);
         return ResponseEntity.ok(user);
     }
@@ -39,17 +38,26 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<UserDTORes> updateUser(
-            @PathVariable String id,
+//    @PutMapping("/{id}")
+//    public ResponseEntity<UserDTORes> updateUser(
+//            @PathVariable Long id,
+//            @RequestBody UserDTOReq userDTOReq
+//    ) {
+//        UserDTORes updatedUser = userService.updateUser(id, userDTOReq);
+//        return ResponseEntity.ok(updatedUser);
+//    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<UserDTORes> patchUser(
+            @PathVariable Long id,
             @RequestBody UserDTOReq userDTOReq
-    ) {
+    ){
         UserDTORes updatedUser = userService.updateUser(id, userDTOReq);
         return ResponseEntity.ok(updatedUser);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable String id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }

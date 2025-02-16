@@ -8,7 +8,7 @@ public record UserDTORes(
         String lastName,
         String email,
         LocalDateTime birthday,
-        String adress,
+        String address,
         String experience,
         String location,
         String photo

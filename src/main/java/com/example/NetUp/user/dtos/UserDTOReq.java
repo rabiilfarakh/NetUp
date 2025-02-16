@@ -8,7 +8,7 @@ public record UserDTOReq(
         String email,
         LocalDateTime birthday,
         String password,
-        String adress,
+        String address,
         String experience,
         String location,
         String photo

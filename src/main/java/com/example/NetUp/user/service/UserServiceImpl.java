@@ -5,11 +5,13 @@ import com.example.NetUp.user.UserMapper;
 import com.example.NetUp.user.UserRepository;
 import com.example.NetUp.user.dtos.UserDTOReq;
 import com.example.NetUp.user.dtos.UserDTORes;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Transactional
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -29,7 +31,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTORes getUserById(String id) {
+    public UserDTORes getUserById(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         return userMapper.toDto(user);
     }
@@ -38,19 +40,21 @@ public class UserServiceImpl implements UserService{
     public List<UserDTORes> getAllUsers() {
         return userRepository.findAll().stream()
                 .map(userMapper::toDto)
+
                 .collect(Collectors.toList());
     }
-
     @Override
-    public UserDTORes updateUser(String id, UserDTOReq userDTOReq) {
-        User existingUser = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    public UserDTORes updateUser(Long id, UserDTOReq userDTOReq) {
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
         userMapper.updateUserFromDto(userDTOReq, existingUser);
-        User updatedUser = userRepository.save(existingUser);
-        return userMapper.toDto(updatedUser);
+
+        return userMapper.toDto(userRepository.save(existingUser));
     }
 
     @Override
-    public void deleteUser(String id) {
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 }
