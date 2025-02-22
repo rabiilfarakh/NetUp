@@ -1,4 +1,4 @@
-package com.example.NetUp.community;
+package com.example.NetUp.community.web;
 
 import com.example.NetUp.community.dtos.CommunityDTOReq;
 import com.example.NetUp.community.dtos.CommunityDTORes;

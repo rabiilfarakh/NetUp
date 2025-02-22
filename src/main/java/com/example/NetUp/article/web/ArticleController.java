@@ -1,4 +1,4 @@
-package com.example.NetUp.article;
+package com.example.NetUp.article.web;
 
 import com.example.NetUp.article.dtos.ArticleDTOReq;
 import com.example.NetUp.article.dtos.ArticleDTORes;

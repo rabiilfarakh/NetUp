@@ -1,4 +1,4 @@
-package com.example.NetUp.user;
+package com.example.NetUp.user.web;
 
 import com.example.NetUp.user.dtos.UserDTOReq;
 import com.example.NetUp.user.dtos.UserDTORes;

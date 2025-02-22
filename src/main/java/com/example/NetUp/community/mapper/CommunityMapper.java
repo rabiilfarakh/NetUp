@@ -1,7 +1,8 @@
-package com.example.NetUp.community;
+package com.example.NetUp.community.mapper;
 
 import com.example.NetUp.community.dtos.CommunityDTOReq;
 import com.example.NetUp.community.dtos.CommunityDTORes;
+import com.example.NetUp.community.entities.Community;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

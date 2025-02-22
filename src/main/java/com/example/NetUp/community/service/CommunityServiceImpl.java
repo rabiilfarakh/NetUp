@@ -1,8 +1,8 @@
 package com.example.NetUp.community.service;
 
-import com.example.NetUp.community.Community;
-import com.example.NetUp.community.CommunityMapper;
-import com.example.NetUp.community.CommunityRepository;
+import com.example.NetUp.community.entities.Community;
+import com.example.NetUp.community.mapper.CommunityMapper;
+import com.example.NetUp.community.repository.CommunityRepository;
 import com.example.NetUp.community.dtos.CommunityDTOReq;
 import com.example.NetUp.community.dtos.CommunityDTORes;
 import jakarta.transaction.Transactional;
