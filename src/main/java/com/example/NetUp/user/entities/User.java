@@ -1,4 +1,4 @@
-package com.example.NetUp.user;
+package com.example.NetUp.user.entities;
 
 import jakarta.persistence.*;
 import lombok.*;

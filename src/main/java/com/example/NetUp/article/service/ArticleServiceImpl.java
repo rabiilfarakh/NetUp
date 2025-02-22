@@ -1,8 +1,8 @@
 package com.example.NetUp.article.service;
 
-import com.example.NetUp.article.Article;
-import com.example.NetUp.article.ArticleMapper;
-import com.example.NetUp.article.ArticleRepository;
+import com.example.NetUp.article.entities.Article;
+import com.example.NetUp.article.mapper.ArticleMapper;
+import com.example.NetUp.article.repository.ArticleRepository;
 import com.example.NetUp.article.dtos.ArticleDTOReq;
 import com.example.NetUp.article.dtos.ArticleDTORes;
 import jakarta.transaction.Transactional;

@@ -1,6 +1,6 @@
-package com.example.NetUp.article;
+package com.example.NetUp.article.mapper;
 
-import com.example.NetUp.article.Article;
+import com.example.NetUp.article.entities.Article;
 import com.example.NetUp.article.dtos.ArticleDTOReq;
 import com.example.NetUp.article.dtos.ArticleDTORes;
 import org.mapstruct.BeanMapping;
@@ -11,7 +11,7 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface ArticleMapper {
-    com.example.NetUp.article.ArticleMapper INSTANCE = Mappers.getMapper(com.example.NetUp.article.ArticleMapper.class);
+    ArticleMapper INSTANCE = Mappers.getMapper(ArticleMapper.class);
 
     ArticleDTORes toDto(Article article);
 

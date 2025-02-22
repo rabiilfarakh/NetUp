@@ -1,4 +1,4 @@
-package com.example.NetUp.community;
+package com.example.NetUp.article.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.time.LocalDateTime;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,14 +16,14 @@ import org.hibernate.annotations.DynamicUpdate;
 @Entity
 @Builder
 @DynamicUpdate
-@Table(name = "communities")
-public class Community {
+@Table(name = "articles")
+public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String title;
     private String description;
-    private int quantity;
+    private LocalDateTime date;
 
 }

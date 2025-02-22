@@ -1,8 +1,8 @@
 package com.example.NetUp.user.service;
 
-import com.example.NetUp.user.User;
-import com.example.NetUp.user.UserMapper;
-import com.example.NetUp.user.UserRepository;
+import com.example.NetUp.user.entities.User;
+import com.example.NetUp.user.mapper.UserMapper;
+import com.example.NetUp.user.repository.UserRepository;
 import com.example.NetUp.user.dtos.UserDTOReq;
 import com.example.NetUp.user.dtos.UserDTORes;
 import jakarta.transaction.Transactional;

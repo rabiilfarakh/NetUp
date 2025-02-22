@@ -1,7 +1,8 @@
-package com.example.NetUp.user;
+package com.example.NetUp.user.mapper;
 
 import com.example.NetUp.user.dtos.UserDTOReq;
 import com.example.NetUp.user.dtos.UserDTORes;
+import com.example.NetUp.user.entities.User;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
