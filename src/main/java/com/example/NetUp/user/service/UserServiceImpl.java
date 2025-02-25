@@ -1,5 +1,6 @@
 package com.example.NetUp.user.service;
 
+import com.example.NetUp.user.Role;
 import com.example.NetUp.user.entities.User;
 import com.example.NetUp.user.mapper.UserMapper;
 import com.example.NetUp.user.repository.UserRepository;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDTORes createUser(UserDTOReq userDTOReq) {
         User user = userMapper.toEntity(userDTOReq);
+        user.setRole(Role.USER);
         User savedUser = userRepository.save(user);
         return userMapper.toDto(savedUser);
     }
