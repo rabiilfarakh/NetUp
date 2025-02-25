@@ -1,12 +1,13 @@
 package com.example.NetUp.user.dtos;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record UserDTOReq(
         String firstName,
         String lastName,
         String email,
-        LocalDateTime birthday,
+        LocalDate birthday,
         String password,
         String address,
         String experience,

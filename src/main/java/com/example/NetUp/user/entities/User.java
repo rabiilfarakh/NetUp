@@ -1,9 +1,11 @@
 package com.example.NetUp.user.entities;
 
+import com.example.NetUp.user.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -21,10 +23,13 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private LocalDateTime birthday;
+    private LocalDate birthday;
     private String password;
     private String address;
     private String experience;
     private String location;
     private String photo;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
 }
