@@ -1,11 +1,15 @@
 package com.example.NetUp.community.entities;
 
+import com.example.NetUp.user.entities.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @NoArgsConstructor
@@ -22,6 +26,11 @@ public class Community {
 
     private String name;
     private String description;
-    private int quantity;
+
+    @Transient
+    private Long quantity;
+
+    @OneToMany(mappedBy = "community" , cascade = CascadeType.ALL)
+    private Set<User> users = new HashSet<>();
 
 }

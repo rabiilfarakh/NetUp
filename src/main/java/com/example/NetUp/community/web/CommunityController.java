@@ -18,7 +18,6 @@ public class CommunityController {
         this.communityService = communityService;
     }
 
-
     @PostMapping
     public ResponseEntity<CommunityDTORes> createCommunity(@RequestBody CommunityDTOReq communityDTOReq) {
         CommunityDTORes createdCommunity = communityService.createCommunity(communityDTOReq);

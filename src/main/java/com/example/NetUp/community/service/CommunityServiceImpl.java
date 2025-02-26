@@ -34,15 +34,30 @@ public class CommunityServiceImpl implements CommunityService {
     public CommunityDTORes getCommunityById(Long id) {
         Community community = communityRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Community not found"));
+        Long userCount = communityRepository.countUsersInCommunity(id);
+        community.setQuantity(userCount);
+
         return communityMapper.toDto(community);
     }
 
+
     @Override
     public List<CommunityDTORes> getAllCommunities() {
-        return communityRepository.findAll().stream()
-                .map(communityMapper::toDto)
+        List<Community> communities = communityRepository.findAll();
+
+        return communities.stream()
+                .map(community -> {
+                    Long userCount = communityRepository.countUsersInCommunity(community.getId());
+                    return new CommunityDTORes(
+                            community.getId(),
+                            community.getName(),
+                            community.getDescription(),
+                            userCount
+                    );
+                })
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public CommunityDTORes updateCommunity(Long id, CommunityDTOReq communityDTOReq) {

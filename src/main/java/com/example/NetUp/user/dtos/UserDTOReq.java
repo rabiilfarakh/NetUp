@@ -12,5 +12,6 @@ public record UserDTOReq(
         String address,
         String experience,
         String location,
-        String photo
+        String photo,
+        Long community_id
 ) {}

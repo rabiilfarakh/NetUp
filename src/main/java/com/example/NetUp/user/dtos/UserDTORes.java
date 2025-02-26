@@ -1,5 +1,6 @@
 package com.example.NetUp.user.dtos;
 
+import com.example.NetUp.community.dtos.CommunityDTORes;
 import com.example.NetUp.user.Role;
 
 import java.time.LocalDateTime;
@@ -14,5 +15,6 @@ public record UserDTORes(
         String experience,
         String location,
         String photo,
-        Role role
+        Role role,
+        CommunityDTORes community
 ) {}
