@@ -1,12 +1,15 @@
-package com.example.NetUp.user.entities;
+package com.example.NetUp.user.model;
 
+import com.example.NetUp.user.entities.User;
 import com.example.NetUp.user.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class UserDetailService implements UserDetailsService {
 
     private UserRepository userRepository;

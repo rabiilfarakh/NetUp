@@ -9,6 +9,7 @@ import com.example.NetUp.user.repository.UserRepository;
 import com.example.NetUp.user.dtos.UserDTOReq;
 import com.example.NetUp.user.dtos.UserDTORes;
 import jakarta.transaction.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,17 +22,21 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
     private final CommunityRepository communityRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, CommunityRepository communityRepository, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository, CommunityRepository communityRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.communityRepository = communityRepository;
         this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public UserDTORes createUser(UserDTOReq userDTOReq) {
         User user = userMapper.toEntity(userDTOReq);
         user.setRole(Role.USER);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         Community community = communityRepository.findById(userDTOReq.community_id())
                 .orElseThrow(() -> new RuntimeException("Community not found with id: " + userDTOReq.community_id()));
 
