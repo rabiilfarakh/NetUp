@@ -16,4 +16,5 @@ public record UserDTORes(
         String photo,
         Role role,
         CommunityDTORes community
-) {}
+) {
+}

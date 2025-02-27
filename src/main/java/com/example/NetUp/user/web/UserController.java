@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
@@ -28,19 +28,19 @@ public class UserController {
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<UserDTORes> getUserById(@PathVariable Long id) {
         UserDTORes user = userService.getUserById(id);
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping
+    @GetMapping("/users")
     public ResponseEntity<List<UserDTORes>> getAllUsers() {
         List<UserDTORes> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/users/{id}")
     public ResponseEntity<UserDTORes> patchUser(
             @PathVariable Long id,
             @RequestBody UserDTOReq userDTOReq
@@ -49,7 +49,7 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/users/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
