@@ -15,7 +15,7 @@ import java.util.Set;
 @Data
 @Entity
 @Builder
-@DynamicUpdate
+//@DynamicUpdate
 @Table(name = "users")
 public class User {
     @Id
