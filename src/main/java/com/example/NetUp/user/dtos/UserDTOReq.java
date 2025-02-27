@@ -4,8 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record UserDTOReq(
-        String firstName,
-        String lastName,
+        String username,
         String email,
         LocalDate birthday,
         String password,

@@ -7,8 +7,7 @@ import java.time.LocalDateTime;
 
 public record UserDTORes(
         String id,
-        String firstName,
-        String lastName,
+        String username,
         String email,
         LocalDateTime birthday,
         String address,
