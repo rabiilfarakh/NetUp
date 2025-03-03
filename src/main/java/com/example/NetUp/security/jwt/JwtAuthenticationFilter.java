@@ -1,4 +1,4 @@
-package com.example.NetUp.security;
+package com.example.NetUp.security.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

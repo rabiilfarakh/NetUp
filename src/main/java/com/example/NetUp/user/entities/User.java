@@ -15,7 +15,6 @@ import java.util.Set;
 @Data
 @Entity
 @Builder
-//@DynamicUpdate
 @Table(name = "users")
 public class User {
     @Id
@@ -27,7 +26,7 @@ public class User {
     private LocalDate birthday;
     private String password;
     private String address;
-    private String experience;
+    private int experience;
     private String location;
     private String photo;
 

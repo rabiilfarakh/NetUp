@@ -9,7 +9,7 @@ public record UserDTOReq(
         LocalDate birthday,
         String password,
         String address,
-        String experience,
+        int experience,
         String location,
         String photo,
         Long community_id

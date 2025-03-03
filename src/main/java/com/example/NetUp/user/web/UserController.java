@@ -3,6 +3,7 @@ package com.example.NetUp.user.web;
 import com.example.NetUp.user.dtos.UserDTOReq;
 import com.example.NetUp.user.dtos.UserDTORes;
 import com.example.NetUp.user.service.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +14,11 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping("/register")
     public ResponseEntity<UserDTORes> createUser(@RequestBody UserDTOReq userDTOReq) {

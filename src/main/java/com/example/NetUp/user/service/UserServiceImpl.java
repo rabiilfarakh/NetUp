@@ -9,6 +9,7 @@ import com.example.NetUp.user.repository.UserRepository;
 import com.example.NetUp.user.dtos.UserDTOReq;
 import com.example.NetUp.user.dtos.UserDTORes;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 @Transactional
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
@@ -24,12 +26,8 @@ public class UserServiceImpl implements UserService{
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, CommunityRepository communityRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.communityRepository = communityRepository;
-        this.userMapper = userMapper;
-        this.passwordEncoder = passwordEncoder;
-    }
+
+
 
     @Override
     public UserDTORes createUser(UserDTOReq userDTOReq) {
