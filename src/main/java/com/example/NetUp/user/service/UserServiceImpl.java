@@ -55,6 +55,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public UserDTORes getUserByUsername(String username) {
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+        return userMapper.toDto(user);
+    }
+
+    @Override
     public List<UserDTORes> getAllUsers() {
         return userRepository.findAll().stream()
                 .map(userMapper::toDto)
