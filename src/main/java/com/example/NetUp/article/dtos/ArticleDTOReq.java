@@ -5,5 +5,6 @@ import java.time.LocalDate;
 public record ArticleDTOReq(
         String title,
         String description,
-        LocalDate date
+        LocalDate date,
+        Long user_id
 ) {}

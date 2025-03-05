@@ -1,5 +1,6 @@
 package com.example.NetUp.user.entities;
 
+import com.example.NetUp.article.entities.Article;
 import com.example.NetUp.community.entities.Community;
 import com.example.NetUp.user.Role;
 import jakarta.persistence.*;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -36,5 +38,9 @@ public class User {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "community_id")
     private Community community;
+
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+    private Set<Article> articles = new HashSet<>();
+
 
 }

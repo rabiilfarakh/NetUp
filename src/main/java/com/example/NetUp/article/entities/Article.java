@@ -1,5 +1,7 @@
 package com.example.NetUp.article.entities;
 
+import com.example.NetUp.community.entities.Community;
+import com.example.NetUp.user.entities.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,5 +28,9 @@ public class Article {
     private String title;
     private String description;
     private LocalDate date;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

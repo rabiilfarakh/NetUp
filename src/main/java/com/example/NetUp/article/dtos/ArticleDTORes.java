@@ -1,10 +1,13 @@
 package com.example.NetUp.article.dtos;
 
+import com.example.NetUp.user.dtos.UserDTORes;
+
 import java.time.LocalDate;
 
 public record ArticleDTORes(
         Long id,
         String title,
         String description,
-        LocalDate date
+        LocalDate date,
+        UserDTORes userDTORes
 ) {}
