@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -24,6 +25,6 @@ public class Article {
 
     private String title;
     private String description;
-    private LocalDateTime date;
+    private LocalDate date;
 
 }
