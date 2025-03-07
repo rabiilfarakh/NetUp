@@ -8,7 +8,7 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface ArticleMapper {
 
-    @Mapping(source = "user.id", target = "userDTORes.id")
+    @Mapping(source = "user.id", target = "user.id")
     ArticleDTORes toDto(Article article);
 
     @Mapping(source = "user_id", target = "user.id")
