@@ -1,4 +1,12 @@
 package com.example.NetUp.comment.dtos;
 
-public class CommentDTORes {
-}
+import com.example.NetUp.article.dtos.ArticleDTORes;
+
+import java.time.LocalDateTime;
+
+public record CommentDTORes(
+        Long id,
+        String description,
+        LocalDateTime date,
+        ArticleDTORes articleDTORes
+) {}

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 public record ArticleDTORes(
         Long id,
+        String photo,
         String title,
         String description,
         LocalDate date,
