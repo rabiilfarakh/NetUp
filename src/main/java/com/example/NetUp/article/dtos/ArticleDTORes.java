@@ -10,5 +10,5 @@ public record ArticleDTORes(
         String title,
         String description,
         LocalDate date,
-        UserDTORes userDTORes
+        UserDTORes user
 ) {}
