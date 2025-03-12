@@ -7,6 +7,5 @@ import java.time.LocalDateTime;
 public record CommentDTORes(
         Long id,
         String description,
-        LocalDateTime date,
-        ArticleDTORes articleDTORes
+        LocalDateTime date
 ) {}

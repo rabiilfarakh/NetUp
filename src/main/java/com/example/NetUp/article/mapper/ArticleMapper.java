@@ -9,6 +9,7 @@ import org.mapstruct.*;
 public interface ArticleMapper {
 
     @Mapping(source = "user.id", target = "user.id")
+    @Mapping(source = "comments", target = "comments")
     ArticleDTORes toDto(Article article);
 
     @Mapping(source = "user_id", target = "user.id")
@@ -16,4 +17,6 @@ public interface ArticleMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateArticleFromDto(ArticleDTOReq articleDTOReq, @MappingTarget Article article);
+
+
 }
