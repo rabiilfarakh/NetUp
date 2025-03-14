@@ -1,11 +1,11 @@
 package com.example.NetUp.article.dtos;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public record ArticleDTOReq(
         String photo,
         String title,
         String description,
-        LocalDate date,
+        LocalDateTime date,
         Long user_id
 ) {}

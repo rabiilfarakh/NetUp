@@ -2,7 +2,7 @@
 
     import com.example.NetUp.comment.dtos.CommentDTORes;
     import com.example.NetUp.user.dtos.UserDTORes;
-    import java.time.LocalDate;
+    import java.time.LocalDateTime;
     import java.util.List;
 
 
@@ -11,7 +11,7 @@
             String photo,
             String title,
             String description,
-            LocalDate date,
+            LocalDateTime date,
             UserDTORes user,
             List<CommentDTORes> comments
     ) {}

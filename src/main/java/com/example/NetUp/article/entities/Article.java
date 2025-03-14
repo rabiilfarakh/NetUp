@@ -34,7 +34,7 @@ public class Article {
     private String photo;
     private String title;
     private String description;
-    private LocalDate date;
+    private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
