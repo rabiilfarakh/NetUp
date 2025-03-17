@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Slf4j
@@ -30,6 +30,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Autowired
     private AppointmentMapper appointmentMapper;
 
+    @Autowired
     private UserAppointmentRepository userAppointmentRepository;
 
     @Override
@@ -38,29 +39,20 @@ public class AppointmentServiceImpl implements AppointmentService {
         User creator = userRepository.findById(appointmentDTOReq.creatorId())
                 .orElseThrow(() -> new RuntimeException("Creator not found"));
 
-//        log.info("User en cours + {}", creator.getAppointments());
-//        log.info("Appointment DTO en cours + {}", appointmentDTOReq);
-
-
-        // Créer l'appointment sans toucher aux collections existantes
         Appointment appointment = appointmentMapper.toEntity(appointmentDTOReq);
-//        log.info("Appointment en cours + {}", appointment.getUserAppointments());
 
         appointment.setCreator(creator);
 
-        // Créer l'association UserAppointment
         UserAppointment userAppointment = new UserAppointment();
         userAppointment.setUser(creator);
         userAppointment.setAppointment(appointment);
         userAppointment.setStatus(AppointmentStatus.APPROVED);
 
-        // Ne pas modifier les collections manuellement, Hibernate s'en chargera via cascade
         appointment.setUserAppointments(
-                Set.of(userAppointment)); // Initialisation explicite
+                Set.of(userAppointment));
 
         log.info("Appointment en cours + {}", appointment);
 
-        // Sauvegarder l'appointment, Hibernate mettra à jour les relations
         return appointmentRepository.save(appointment);
     }
 
@@ -82,10 +74,8 @@ public class AppointmentServiceImpl implements AppointmentService {
             userAppointment.setAppointment(appointment);
             userAppointment.setStatus(AppointmentStatus.PENDING);
 
-            // Utiliser la méthode helper pour ajouter la relation
             appointment.addUserAppointment(userAppointment);
 
-            // Sauvegarder, Hibernate gérera la relation bidirectionnelle
             return appointmentRepository.save(appointment);
         }
 
@@ -109,5 +99,18 @@ public class AppointmentServiceImpl implements AppointmentService {
                 .ifPresent(ua -> ua.setStatus(AppointmentStatus.APPROVED));
 
         return appointmentRepository.save(appointment);
+    }
+
+    @Override
+    public List<Appointment> getAllAppointments() {
+        log.info("Retrieving all appointments");
+        return appointmentRepository.findAll();
+    }
+
+    @Override
+    public Appointment getAppointmentById(Long appointmentId) {
+        log.info("Retrieving appointment with id: {}", appointmentId);
+        return appointmentRepository.findById(appointmentId)
+                .orElseThrow(() -> new RuntimeException("Appointment not found with id: " + appointmentId));
     }
 }
