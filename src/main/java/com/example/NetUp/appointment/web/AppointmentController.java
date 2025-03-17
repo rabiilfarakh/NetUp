@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/api/appointments")
 public class AppointmentController {
@@ -39,6 +42,21 @@ public class AppointmentController {
             @PathVariable Long userId,
             @RequestParam Long creatorId) {
         Appointment appointment = appointmentService.approveUser(appointmentId, userId, creatorId);
+        return ResponseEntity.ok(appointmentMapper.toDto(appointment));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<AppointmentDTORes>> getAllAppointments() {
+        List<Appointment> appointments = appointmentService.getAllAppointments();
+        List<AppointmentDTORes> appointmentDTORes = appointments.stream()
+                .map(appointmentMapper::toDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(appointmentDTORes);
+    }
+
+    @GetMapping("/{appointmentId}")
+    public ResponseEntity<AppointmentDTORes> getAppointmentById(@PathVariable Long appointmentId) {
+        Appointment appointment = appointmentService.getAppointmentById(appointmentId);
         return ResponseEntity.ok(appointmentMapper.toDto(appointment));
     }
 }
