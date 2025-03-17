@@ -1,14 +1,11 @@
 package com.example.NetUp.user.entities;
 
-import com.example.NetUp.article.entities.Article;
 import com.example.NetUp.community.entities.Community;
 import com.example.NetUp.user.Role;
+import com.example.NetUp.user_appointment.entites.UserAppointment;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.DynamicUpdate;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,12 +32,23 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "community_id")
     private Community community;
 
-    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
-    private Set<Article> articles = new HashSet<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @Builder.Default
+    private Set<UserAppointment> appointments = new HashSet<>();
+
+    public void addAppointment(UserAppointment userAppointment) {
+        this.appointments.add(userAppointment);
+        userAppointment.setUser(this);
+    }
+
+    public void removeAppointment(UserAppointment userAppointment) {
+        this.appointments.remove(userAppointment);
+        userAppointment.setUser(null);
+    }
 
 
 }
