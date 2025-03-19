@@ -24,6 +24,7 @@ public class Appointment {
     private String description;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
+    private String location;
 
     @ManyToOne
     @JoinColumn(name = "creator_id")

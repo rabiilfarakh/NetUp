@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record UserDTORes(
-        String id,
+        Long id,
         String username,
         String email,
         LocalDate birthday,
