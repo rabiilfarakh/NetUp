@@ -11,4 +11,5 @@ public interface AppointmentService {
     Appointment approveUser(Long appointmentId, Long userId, Long creatorId);
     List<Appointment> getAllAppointments();
     Appointment getAppointmentById(Long appointmentId);
+    void deleteAppointment(Long appointmentId);
 }

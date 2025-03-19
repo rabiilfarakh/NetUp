@@ -59,4 +59,10 @@ public class AppointmentController {
         Appointment appointment = appointmentService.getAppointmentById(appointmentId);
         return ResponseEntity.ok(appointmentMapper.toDto(appointment));
     }
+
+    @DeleteMapping("/{appointmentId}")
+    public ResponseEntity<Void> deleteAppointment(@PathVariable Long appointmentId) {
+        appointmentService.deleteAppointment(appointmentId);
+        return ResponseEntity.noContent().build();
+    }
 }
