@@ -8,5 +8,6 @@ public record AppointmentDTOReq(
         String description,
         LocalDateTime startTime,
         LocalDateTime endTime,
+        String location,
         Long creatorId
 ) {}

@@ -12,6 +12,7 @@ public record AppointmentDTORes(
         String description,
         LocalDateTime startTime,
         LocalDateTime endTime,
+        String location,
         UserDTORes creator,
         Set<UserAppointmentDTORes> participants
 ) {}
