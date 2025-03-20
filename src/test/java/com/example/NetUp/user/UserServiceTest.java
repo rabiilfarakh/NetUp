@@ -66,13 +66,28 @@ class UserServiceTest {
                 .build();
 
         userDTOReq = new UserDTOReq(
-                "testUser", "test@example.com", LocalDate.of(2000, 1, 1),
-                "password", "123 Street", 5, "Paris", "photo.jpg", 1L
+                "testUser",
+                "test@example.com",
+                LocalDate.of(2000, 1, 1),
+                "password",
+                "123 Street",
+                5,
+                "Paris",
+                "photo.jpg",
+                1L
         );
 
         userDTORes = new UserDTORes(
-                "1", "testUser", "test@example.com", LocalDate.of(2000, 1, 1),
-                "123 Street", 5, "Paris", "photo.jpg", Role.USER, null
+                1L,
+                "testUser",
+                "test@example.com",
+                LocalDate.of(2000, 1, 1),
+                "123 Street",
+                5,
+                "Paris",
+                "photo.jpg",
+                Role.USER,
+                null
         );
     }
 
@@ -93,6 +108,17 @@ class UserServiceTest {
         verify(communityRepository).save(any(Community.class));
     }
 
+    @Test
+    void createUser_ShouldThrowException_WhenCommunityDoesNotExist() {
+        when(communityRepository.findById(1L)).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            userService.createUser(userDTOReq);
+        });
+
+        assertTrue(exception.getMessage().contains("Community not found"));
+        verify(userRepository, never()).save(any());
+    }
 
     @Test
     void getUserById_ShouldReturnUser_WhenUserExists() {
@@ -103,6 +129,7 @@ class UserServiceTest {
 
         assertNotNull(result);
         assertEquals("testUser", result.username());
+        assertEquals(1L, result.id());
     }
 
     @Test
@@ -145,6 +172,7 @@ class UserServiceTest {
 
         assertNotNull(result);
         assertEquals("testUser", result.username());
+        verify(userRepository).save(user);
     }
 
     @Test
@@ -154,14 +182,26 @@ class UserServiceTest {
         Exception exception = assertThrows(RuntimeException.class, () -> userService.updateUser(1L, userDTOReq));
 
         assertEquals("User not found", exception.getMessage());
+        verify(userRepository, never()).save(any());
     }
 
     @Test
     void deleteUser_ShouldDeleteUser_WhenUserExists() {
+        when(userRepository.findById(1L)).thenReturn(Optional.of(user));
         doNothing().when(userRepository).deleteById(1L);
 
         assertDoesNotThrow(() -> userService.deleteUser(1L));
 
         verify(userRepository, times(1)).deleteById(1L);
+    }
+
+    @Test
+    void deleteUser_ShouldThrowException_WhenUserDoesNotExist() {
+        when(userRepository.findById(1L)).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(RuntimeException.class, () -> userService.deleteUser(1L));
+
+        assertEquals("User not found", exception.getMessage());
+        verify(userRepository, never()).deleteById(any());
     }
 }
