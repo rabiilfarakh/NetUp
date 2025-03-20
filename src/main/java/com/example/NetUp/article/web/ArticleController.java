@@ -3,6 +3,7 @@ package com.example.NetUp.article.web;
 import com.example.NetUp.article.dtos.ArticleDTOReq;
 import com.example.NetUp.article.dtos.ArticleDTORes;
 import com.example.NetUp.article.service.ArticleService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class ArticleController {
 
 
     @PostMapping
-    public ResponseEntity<ArticleDTORes> createArticle(@RequestBody ArticleDTOReq articleDTOReq) {
+    public ResponseEntity<ArticleDTORes> createArticle(@Valid @RequestBody ArticleDTOReq articleDTOReq) {
         ArticleDTORes createdArticle = articleService.createArticle(articleDTOReq);
         return new ResponseEntity<>(createdArticle, HttpStatus.CREATED);
     }

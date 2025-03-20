@@ -3,6 +3,7 @@ package com.example.NetUp.comment.web;
 import com.example.NetUp.comment.dtos.CommentDTOReq;
 import com.example.NetUp.comment.dtos.CommentDTORes;
 import com.example.NetUp.comment.service.CommentService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping
-    public ResponseEntity<CommentDTORes> createComment(@RequestBody CommentDTOReq commentDTOReq) {
+    public ResponseEntity<CommentDTORes> createComment(@Valid @RequestBody CommentDTOReq commentDTOReq) {
         CommentDTORes commentDTORes = commentService.createComment(commentDTOReq);
         return ResponseEntity.ok(commentDTORes);
     }

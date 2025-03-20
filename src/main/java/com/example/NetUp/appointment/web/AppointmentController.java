@@ -5,6 +5,7 @@ import com.example.NetUp.appointment.dtos.AppointmentDTORes;
 import com.example.NetUp.appointment.entities.Appointment;
 import com.example.NetUp.appointment.mapper.AppointmentMapper;
 import com.example.NetUp.appointment.service.AppointmentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class AppointmentController {
     private AppointmentMapper appointmentMapper;
 
     @PostMapping
-    public ResponseEntity<AppointmentDTORes> createAppointment(@RequestBody AppointmentDTOReq appointmentDTOReq) {
+    public ResponseEntity<AppointmentDTORes> createAppointment(@Valid @RequestBody AppointmentDTOReq appointmentDTOReq) {
         Appointment appointment = appointmentService.createAppointment(appointmentDTOReq);
         return ResponseEntity.ok(appointmentMapper.toDto(appointment));
     }

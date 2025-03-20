@@ -3,6 +3,7 @@ package com.example.NetUp.user.web;
 import com.example.NetUp.user.dtos.UserDTOReq;
 import com.example.NetUp.user.dtos.UserDTORes;
 import com.example.NetUp.user.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<UserDTORes> createUser(@RequestBody UserDTOReq userDTOReq) {
+    public ResponseEntity<UserDTORes> createUser(@Valid @RequestBody UserDTOReq userDTOReq) {
         UserDTORes createdUser = userService.createUser(userDTOReq);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
@@ -45,7 +46,7 @@ public class UserController {
     }
 
     @PatchMapping("/users/{id}")
-    public ResponseEntity<UserDTORes> patchUser(
+    public ResponseEntity<UserDTORes> patchUser(@Valid
             @PathVariable Long id,
             @RequestBody UserDTOReq userDTOReq
     ){

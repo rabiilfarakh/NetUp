@@ -3,6 +3,7 @@ package com.example.NetUp.community.web;
 import com.example.NetUp.community.dtos.CommunityDTOReq;
 import com.example.NetUp.community.dtos.CommunityDTORes;
 import com.example.NetUp.community.service.CommunityService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class CommunityController {
     }
 
     @PostMapping
-    public ResponseEntity<CommunityDTORes> createCommunity(@RequestBody CommunityDTOReq communityDTOReq) {
+    public ResponseEntity<CommunityDTORes> createCommunity(@Valid @RequestBody CommunityDTOReq communityDTOReq) {
         CommunityDTORes createdCommunity = communityService.createCommunity(communityDTOReq);
         return new ResponseEntity<>(createdCommunity, HttpStatus.CREATED);
     }
