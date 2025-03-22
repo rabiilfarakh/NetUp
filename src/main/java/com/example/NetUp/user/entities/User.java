@@ -1,5 +1,6 @@
 package com.example.NetUp.user.entities;
 
+import com.example.NetUp.comment.entities.Comment;
 import com.example.NetUp.community.entities.Community;
 import com.example.NetUp.user.Role;
 import com.example.NetUp.user_appointment.entites.UserAppointment;
@@ -39,6 +40,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @Builder.Default
     private Set<UserAppointment> appointments = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<Comment> comments = new HashSet<>();
 
     public void addAppointment(UserAppointment userAppointment) {
         this.appointments.add(userAppointment);

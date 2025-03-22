@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres:latest
-    container_name: netup-db
+    container_name: db
     ports:
       - "5433:5432"
     environment:
@@ -27,7 +27,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/netup
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 1234
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
     depends_on:
       db:
         condition: service_healthy

@@ -1,9 +1,8 @@
 package com.example.NetUp.user.dtos;
 
 public record EmbUserDTORes(
-        String id,
+        Long id,
         String username,
         String photo
-
 ) {
 }

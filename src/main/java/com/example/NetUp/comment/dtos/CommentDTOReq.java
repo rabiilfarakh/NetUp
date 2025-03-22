@@ -14,5 +14,9 @@ public record CommentDTOReq(
 
         @NotNull(message = "L'ID de l'article est requis")
         @Positive(message = "L'ID de l'article doit être positif")
-        Long article_id
+        Long article_id,
+
+        @NotNull(message = "L'ID de l'utilisateur est requis")
+        @Positive(message = "L'ID de l'utilisateur doit être positif")
+        Long user_id
 ) {}

@@ -7,6 +7,8 @@ import com.example.NetUp.comment.entities.Comment;
 import com.example.NetUp.article.entities.Article;
 import com.example.NetUp.comment.mapper.CommentMapper;
 import com.example.NetUp.comment.repository.CommentRepository;
+import com.example.NetUp.user.entities.User;
+import com.example.NetUp.user.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,14 +26,14 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentDTORes createComment(CommentDTOReq commentDTOReq) {
+
+        Comment comment = commentMapper.toEntity(commentDTOReq);
+
         Article article = articleRepository.findById(commentDTOReq.article_id())
                 .orElseThrow(() -> new EntityNotFoundException("Article not found"));
+        comment.setArticle(article);
 
-        Comment comment = Comment.builder()
-                .description(commentDTOReq.description())
-                .date(LocalDateTime.now())
-                .article(article)
-                .build();
+        comment.setDate(LocalDateTime.now());
 
         Comment savedComment = commentRepository.save(comment);
         return commentMapper.toDto(savedComment);

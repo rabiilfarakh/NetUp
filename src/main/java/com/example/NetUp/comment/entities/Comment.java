@@ -1,6 +1,7 @@
 package com.example.NetUp.comment.entities;
 
 import com.example.NetUp.article.entities.Article;
+import com.example.NetUp.user.entities.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,4 +28,8 @@ public class Comment {
     @JoinColumn(name = "article_id")
     private Article article;
 
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 }
